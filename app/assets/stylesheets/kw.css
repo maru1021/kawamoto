@@ -1,0 +1,182 @@
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fcfcfc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  z-index: 999;
+  opacity: 0.98 ;
+}
+
+body {
+  padding-top: 110px;
+  font-family: "Noto Serif JP", serif;
+}
+
+.name {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.name img {
+  height: 110px;
+  width: auto;
+  object-fit: cover;
+}
+
+.name-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.name-text p {
+  margin: 0;
+  line-height: 1.0;
+}
+
+.name-text p:first-child {
+  font-size: 22px;
+}
+
+.name-text p:not(:first-child) {
+  position: relative;
+  left: 12px;
+}
+
+.name-text p:nth-child(2) {
+  font-size: 35px;
+}
+
+.name-text p:nth-child(3) {
+  position: relative;
+  left: 60px;
+  font-size: 16px;
+}
+
+.menu {
+  display: flex;
+  gap: 15px;
+  font-size: 18px;
+  margin-right: 20px;
+}
+
+.menu a {
+  color: rgb(10, 10, 10);
+  text-decoration: none;
+  padding: 5px 10px;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.menu a:hover {
+  border-color: #b4cee6;
+  background-color: #f0f0f0;
+}
+
+.title-back{
+  width: 100%;
+  text-align: center;
+}
+
+.title {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  font-size: 50px;
+  color: #333;
+  padding: 10px 0;
+  margin: 0 auto;
+}
+
+.title::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  height: 4px;
+  width: 100% ;
+  background-color: #0056b3;
+  opacity: 0.7;
+  transform: translateX(-50%);
+  margin-top: -10px;
+}
+
+.policy, .voice {
+  position: relative;
+  background-color: #eff8fe;
+  margin: 20px 0;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.policy h2, .voice h2 {
+  background-color: #0056b3;
+  color: rgb(242, 240, 240);
+  font-size: 30px;
+  padding: 10px 50px 10px 20px;
+  border-radius: 4px;
+  clip-path: polygon(0 0, 100% 0%, 90% 100%, 0% 100%);
+  margin: -20px 0 20px -20px;
+}
+
+.policy div, .voice div, .profile div {
+  padding: 3px;
+  font-size: 20px;
+}
+
+.profile-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #f4f4f4;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.profile-text{
+  width: 50%;
+  padding: 20px;
+}
+
+.profile-name{
+  font-size: 30px;
+  margin-left: -10%;
+}
+
+.history{
+  margin-left: -100px;
+}
+
+.party-logo{
+  width: 10%;
+  height: auto;
+  margin-left: 30px;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.address {
+  margin-left: 3%;
+}
+
+.party-logo {
+  width: 100px;
+  height: auto;
+  margin-left:50%;
+}
+
+.indent{
+  margin-left: 20px;
+}
