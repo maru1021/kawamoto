@@ -39,3 +39,5 @@
 /var/www/kawamoto/config/puma.rb
 Gemfile
 Gemfile.lock
+config/database.yml
+/config/database.yml
