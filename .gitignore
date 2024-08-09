@@ -37,4 +37,5 @@
 # Ignore Puma configuration
 /etc/systemd/system/puma.service
 /var/www/kawamoto/config/puma.rb
-
+Gemfile
+Gemfile.lock
