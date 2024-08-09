@@ -184,6 +184,120 @@ body {
   margin-left:50%;
 }
 
-.indent{
-  margin-left: 20px;
+.achievements-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-top: 1%;
+  padding: 0 20px;
+  justify-content: space-between;
+}
+
+.achievements {
+  flex: 0 1 calc(50% - 40px);
+  box-sizing: border-box;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.achievements h2 {
+  text-align: center;
+}
+
+.achievements:nth-child(odd) {
+  margin-left: auto;
+}
+
+.achievements:nth-child(even) {
+  margin-right: auto;
+}
+
+.advertisement-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.advertisement-container {
+  overflow: hidden;
+  width: 80%;
+}
+
+.advertisement {
+  display: flex;
+  transition: transform 0.3s ease;
+  width: max-content;
+}
+
+.advertisement-thumbnail {
+  position: relative;
+  flex: 0 0 auto;
+  overflow: hidden;
+}
+
+.advertisement-thumbnail img {
+  width: 395px;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.advertisement-thumbnail img:hover {
+  transform: scale(1.05);
+}
+
+.hover-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 10px 20px;
+  border-radius: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  font-size: 18px;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.advertisement-thumbnail:hover .hover-text {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.carousel-button {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  user-select: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  padding: 10px;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#prev {
+  left: 0;
+  margin-left: 5%;
+  display: none;
+}
+
+#next {
+  right: 0;
+  margin-right: 5%;
 }
