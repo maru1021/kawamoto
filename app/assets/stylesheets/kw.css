@@ -13,6 +13,10 @@
   opacity: 0.98 ;
 }
 
+#menuToggle {
+  display: none;
+}
+
 body {
   padding-top: 110px;
   font-family: "Noto Serif JP", serif;
@@ -80,6 +84,10 @@ body {
 .menu a:hover {
   border-color: #b4cee6;
   background-color: #f0f0f0;
+}
+
+.party-link-logo {
+  width: 100px;
 }
 
 .main-img {
@@ -160,12 +168,6 @@ body {
 
 .history{
   margin-left: -100px;
-}
-
-.party-logo{
-  width: 10%;
-  height: auto;
-  margin-left: 30px;
 }
 
 .footer {

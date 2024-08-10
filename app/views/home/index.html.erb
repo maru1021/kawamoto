@@ -1,5 +1,5 @@
 
-<div class="header">
+<div class="header" id="header">
   <div class="name">
     <%= image_tag 'face.png' %>
     <div class="name-text">
@@ -9,16 +9,18 @@
     </div>
   </div>
 
-  <div class="menu">
+  <div class="menu" id="menu">
     <a href="#profile">プロフィール</a>
     <a href="#voice">市民の声</a>
-    <a href="">実績</a>
+    <a href="#achievements">実績</a>
     <a href="#arliament">議会報告等</a>
-    <a href="https://kawamotokatsuragi.com/katudou.html">Line</a>
-    <a href="https://kawamotokatsuragi.com/katudou.html">共産党</a>
-    <a href="https://kawamotokatsuragi.com/katudou.html">後援会</a>
+    <a href="https://kawamotokatsuragi.com/katudou.html">後援会入会</a>
+    <a id="line-link" href="https://kawamotokatsuragi.com/katudou.html">Line</a>
+    <a id="party-link" href="https://www.jcp.or.jp/"><%= image_tag 'party.png', class: "party-link-logo" %></a>
   </div>
 </div>
+
+<div id="menuToggle">☰</div>
 
 <%= image_tag 'IMG_1369.JPG', class: 'main-img' %>
 
@@ -69,7 +71,7 @@
 </div>
 
 <div class="profile-container">
-  <%= image_tag 'face.png', alt: "川本まさきの画像" %>
+  <%= image_tag 'face.png', alt: "川本まさきの画像", class: "profile-img" %>
   <div class="profile-text">
     <div class="profile-name">川本 雅樹（かわもと まさき）</div>
     <div>御所市議会議員 現在２期目</div>
@@ -82,13 +84,13 @@
     <br>
     <div class="history">
       <div>◆1953年 御所市幸町生まれ</div>
-      <div id="voice">◆1971年 御所市立大正小学校、大正中学校を経て県立畝傍高等学校卒</div>
+      <div>◆1971年 御所市立大正小学校、大正中学校を経て県立畝傍高等学校卒</div>
       <div>◆1976年 神戸大学工学部建築学科卒</div>
       <div>◆1978年 神戸大学院工学研究科建築学専攻（修士課程）修了</div>
       <div>◆1978年 奈良県採用、橿原陸上競技場、橿原球場（現さとやく球場）建設等に携わる。</div>
       <div class="indent">県職員労働組合で中央執行委員、副委員長を歴任</div>
       <div class="indent">大正小学校PTA会長、大正中学校PTA副会長、高田高等学校PTA会長歴任</div>
-      <div>◆2013年 奈良県庁定年退職。同年、川本建築設計事務所開設</div>
+      <div id="voice">◆2013年 奈良県庁定年退職。同年、川本建築設計事務所開設</div>
       <div>◆2018年 御所市議会議員初当選</div>
       ●趣味は、日本画、旅行
     </div>
@@ -163,7 +165,7 @@
     <div style="color: rgb(166, 125, 237);">博物館を核として、本市が持つ歴史のすばらしさを全国に発信することで市外の方たちに関心を寄せていただき、市民にも改めて郷土のすばらしさ、誇らしさに気づいていただけるのではないか」</div>
     <h3 style="color: rgb(16, 16, 16);text-decoration: underline;">市民の声</h3>
     <div style="color: rgb(16, 16, 16);">●葛城氏や鴨族の歴史を後世の人にていねいに伝えるために、ぜひ博物館を造ってほしい。</div>
-    <div style="color: rgb(16, 16, 16);">●観光のスポットとして、全国の人に訪れてもらいたい。</div>
+    <div style="color: rgb(16, 16, 16);" id="achievements">●観光のスポットとして、全国の人に訪れてもらいたい。</div>
     <div style="color: rgb(16, 16, 16);">●敷地の一画に地元産の「柿」や「やまといも」などの売り場を造って、「食」も全国に発信したい。</div>
 </div>
 
@@ -195,7 +197,7 @@
 
   <div class="achievements">
     <h2>デマンドタクシー導入</h2>
-    <div>デマンドタクシーの導入をしました。</div>
+    <div id="arliament">デマンドタクシーの導入をしました。</div>
     <div>それにより...</div>
     <div>...</div>
   </div>
@@ -238,40 +240,71 @@
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
+  function menuDisp(){
+    const menuToggle = document.getElementById('menuToggle');
+    const menu = document.getElementById('menu');
+    const menuLinks = document.querySelectorAll('.menu a');
+
+    menuToggle.addEventListener('click', function() {
+      if (menu.style.display === 'flex') {
+        menu.style.display = 'none';
+        menuToggle.textContent = '☰'
+      } else {
+        menu.style.display = 'flex';
+        menuToggle.textContent = '×'
+      }
+    });
+
+    menuLinks.forEach(a => {
+      a.addEventListener('click', function(){
+        menu.style.display = 'none';
+        menuToggle.textContent = '☰'
+      })
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
     let currentIndex = 0;
-    const visibleCount = 3;
-    const advertisementElement = document.querySelector('.advertisement');
-    const thumbnails = document.querySelectorAll('.advertisement-thumbnail');
-    const prevButton = document.getElementById('prev');
-    const nextButton = document.getElementById('next');
+    let visibleCount
+    if (window.innerWidth <= 480) {
+      const lineLink = document.getElementById('line-link');
+      const partyLink = document.getElementById('party-link');
+      visibleCount = 1;
+      menuDisp()
 
-    function slide(direction) {
-        const maxIndex = thumbnails.length - visibleCount;
-        currentIndex += direction;
-
-        if (currentIndex <= 0) {
-            prevButton.style.display = 'none';
-        } else {
-            prevButton.style.display = 'block';
-        }
-
-        if (currentIndex >= thumbnails.length - visibleCount) {
-            nextButton.style.display = 'none';
-        } else {
-            nextButton.style.display = 'block';
-        }
-
-        if (currentIndex < 0) {
-            currentIndex = 0;
-        } else if (currentIndex > maxIndex) {
-            currentIndex = maxIndex;
-        }
-
-        const offset = -currentIndex * (thumbnails[0].offsetWidth + 10);
-        advertisementElement.style.transform = `translateX(${offset}px)`;
+      partyLink.innerHTML = "日本共産党リンク"
+    } else {
+      visibleCount = 3;
     }
 
+    function slide(direction) {
+      const prevButton = document.getElementById('prev');
+      const nextButton = document.getElementById('next');
+      const advertisementElement = document.querySelector('.advertisement');
+      const thumbnails = document.querySelectorAll('.advertisement-thumbnail');
+      const maxIndex = thumbnails.length - visibleCount;
+      currentIndex += direction;
+
+      if (currentIndex <= 0) {
+          prevButton.style.display = 'none';
+      } else {
+          prevButton.style.display = 'block';
+      }
+
+      if (currentIndex >= thumbnails.length - visibleCount) {
+          nextButton.style.display = 'none';
+      } else {
+          nextButton.style.display = 'block';
+      }
+
+      if (currentIndex < 0) {
+          currentIndex = 0;
+      } else if (currentIndex > maxIndex) {
+          currentIndex = maxIndex;
+      }
+
+      advertisementElement.style.transform = `translateX(${-currentIndex}px)`;
+    }
     document.getElementById('prev').addEventListener('click', () => slide(-1));
     document.getElementById('next').addEventListener('click', () => slide(1));
   });
