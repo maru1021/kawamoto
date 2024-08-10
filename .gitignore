@@ -33,12 +33,18 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+<<<<<<< HEAD
 
 # Ignore Puma configuration
 /etc/systemd/system/puma.service
+=======
+>>>>>>> 879c77a7f9b687ff476766f67afac7b9b286f2fe
 /config/puma.rb
 /Gemfile
 /Gemfile.lock
 /config/database.yml
+<<<<<<< HEAD
 config/credentials/
 nohup.out
+=======
+>>>>>>> 879c77a7f9b687ff476766f67afac7b9b286f2fe
