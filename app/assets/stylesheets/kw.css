@@ -73,21 +73,42 @@ body {
   margin-right: 100px;
 }
 
-.menu a {
+.menu a, #supporter {
   color: rgb(10, 10, 10);
   text-decoration: none;
   padding: 5px 10px;
   border: 1px solid transparent;
-  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s ease;
 }
 
-.menu a:hover {
-  border-color: #b4cee6;
-  background-color: #f0f0f0;
+.menu a::after, #supporter::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #b4cee6;
+  transition: width 0.3s ease;
+}
+
+.menu a:hover, #supporter:hover {
+  color: #333;
+}
+
+.menu a:hover::after, #supporter:hover::after {
+  width: 100%;
 }
 
 .party-link-logo {
   width: 100px;
+}
+
+.line-link-logo {
+  width: 40px;
+  margin-top: -5px;
 }
 
 .main-img {
@@ -142,7 +163,7 @@ body {
   margin: -20px 0 20px -20px;
 }
 
-.policy div, .voice div, .profile div {
+.policy div, .voice div, .profile div, .achievements div {
   padding: 3px;
   font-size: 20px;
 }
@@ -154,6 +175,10 @@ body {
   background-color: #f4f4f4;
   padding: 20px;
   margin-top: 20px;
+}
+
+.profile-img {
+  width: 300px;
 }
 
 .profile-text{

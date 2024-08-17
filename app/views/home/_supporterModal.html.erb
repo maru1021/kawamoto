@@ -1,0 +1,54 @@
+<div class="modal fade" id="supporterModal" tabindex="-1" aria-labelledby="supporterModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="supporterModalLabel">後援会入会</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h3>私は川本 まさきを応援します</h3>
+        <form id="supporterForm">
+          <input type="hidden" name="authenticity_token" value="" id="csrfTokenField">
+          <div class="form-group">
+            <label for="supporterlName">氏名</label>
+            <input type="text" class="form-control" id="supporterName" name="name">
+            <div class="invalid-feedback">氏名を入力してください</div>
+          </div>
+          <div class="form-group">
+            <label for="supporterlPost">郵便番号</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="supporterPost" name="post" placeholder="郵便番号">
+              <button type="button" class="btn btn-primary" id="searchAddressBtn">住所検索</button>
+              <div class="invalid-feedback">郵便番号を半角で正しく入力してください</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="supporterlAddress">住所</label>
+            <input type="text" class="form-control" id="supporterAddress" name="address">
+            <div class="invalid-feedback">住所を入力してください</div>
+          </div>
+          <div class="form-group">
+            <label for="supporterlPhone">電話番号</label>
+            <input type="text" class="form-control" id="supporterPhone" name="phone">
+            <div class="invalid-feedback">電話番号を半角で正しく入力してください</div>
+          </div>
+          <div class="form-group">
+            <label for="supporterlBirth">生年月日</label>
+            <input type="date" class="form-control" id="supporterBirth" name="birth">
+            <div class="invalid-feedback">生年月日を入力してください</div>
+          </div>
+          <div>※ご記入いただきました個人情報は、後援会活動のご案内やニュースの発送等に使用させていただきます。</div>
+          <div>また、個人情報保護法に基づき厳重に取り扱いいたします。</div>
+          <hr>
+          <div class="d-flex justify-content-end">
+              <button type="submit" id="supporterSaveButton" class="btn btn-primary" data-type="">入会</button>
+          </div>
+        </form>
+        <div id="thanks" style="display:none">
+          <div>ご入会誠にありがとうございます。</div>
+          <div>これからも応援の方よろしくお願い申し上げます。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

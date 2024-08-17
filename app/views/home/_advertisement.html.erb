@@ -1,0 +1,20 @@
+<div class="title-back">
+  <div class="title" id="arliament">議会報告</div>
+</div>
+
+<div class="advertisement-wrapper">
+  <button class="carousel-button" id="prev" style="display: none;">◀</button>
+  <div class="advertisement-container">
+    <div class="advertisement">
+      <% @pdf_thumbnails.each do |thumbnail_path| %>
+        <div class="advertisement-thumbnail">
+          <%= link_to image_tag("/advertisement/thumbnails/#{File.basename(thumbnail_path)}", alt: 'PDF Thumbnail'),
+              "/advertisement/#{File.basename(thumbnail_path, '_page_1.png')}.pdf", target: '_blank'
+          %>
+          <div class="hover-text">Click</div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <button class="carousel-button" id="next">▶</button>
+</div>

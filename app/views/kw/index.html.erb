@@ -1,0 +1,333 @@
+<div class="form-container">
+    <form id="uploadForm" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="pdf">議会報告のPDFファイル</label>
+            <input type="file" id="pdf" name="pdf" accept="application/pdf" class="form-control-file">
+        </div>
+        <button type="submit" class="btn btn-primary" id="uploadFormButton">アップロード</button>
+    </form>
+</div>
+
+<div id="searchfield">
+    <label for=search>検索</label>
+    <input type="text" id="search">
+</div>
+
+
+
+<div id="supporter">
+    <table id="supporterTable">
+        <thead>
+            <tr>
+                <th>名前</th>
+                <th>郵便番号</th>
+                <th>住所</th>
+                <th>電話番号</th>
+                <th>生年月日</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @datas.each do |data| %>
+                <tr id="<%= data.id %>">
+                    <td class="supporter-name"><%= data.name %></td>
+                    <td class="supporter-post"><%= data.post %></td>
+                    <td class="supporter-address"><%= data.address %></td>
+                    <td class="supporter-phone"><%= data.phone %></td>
+                    <td class="supporter-birth"><%= data.birth %></td>
+                </tr>
+                <% end %>
+        </tbody>
+    </table>
+</div>
+
+<div class="custom-context-menu" id="contextMenu">
+    <div id="menu-edit">編集</div>
+    <div id="menu-delete">削除</div>
+</div>
+
+<%= render "home/supporterModal" %>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<script>
+    const url = "supporter"
+    const form = document.getElementById('supporterForm');
+    const inputs = supporterForm.querySelectorAll('input:not([id="csrfTokenField"])');
+    const saveButton = document.getElementById('supporterSaveButton');
+    const supporterModal = new bootstrap.Modal(document.getElementById('supporterModal'));
+    const supporterTable = document.getElementById('supporterTable');
+    const tbody = supporterTable.querySelector('tbody');
+    const rows = tbody.querySelectorAll('tr');
+    const search = document.getElementById('search');
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+    document.addEventListener('DOMContentLoaded', function() {
+        let tableData = [];
+
+        search.focus()
+
+        rows.forEach(function(tr) {
+            const cells = tr.querySelectorAll('td');
+            let rowData = {
+                id: tr.id,
+                name: cells[0].textContent.trim(),
+                post: cells[1].textContent.trim(),
+                address: cells[2].textContent.trim(),
+                phone: cells[3].textContent.trim(),
+                birth: cells[4].textContent.trim()
+            };
+            tableData.push(rowData);
+        });
+
+        search.addEventListener('keyup', function(){
+            const filter = search.value.toLowerCase();
+            const filteredData = tableData.filter(supporter => {
+                return (
+                    supporter.name.toLowerCase().includes(filter) ||
+                    supporter.post.toLowerCase().includes(filter) ||
+                    supporter.address.toLowerCase().includes(filter) ||
+                    supporter.phone.toLowerCase().includes(filter) ||
+                    supporter.birth.toLowerCase().includes(filter)
+                );
+            });
+            tbody.innerHTML = '';
+
+            filteredData.forEach(function(data) {
+                const tr = document.createElement('tr');
+                tr.id = data.id;
+                tr.innerHTML = `
+                    <td>${data.name}</td>
+                    <td>${data.post}</td>
+                    <td>${data.address}</td>
+                    <td>${data.phone}</td>
+                    <td>${data.birth}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        })
+    });
+
+    supporterTable.addEventListener('contextmenu', function(e) {
+        const targetElement = e.target.closest('tr');
+        if (targetElement && targetElement.parentElement.tagName === 'TBODY') {
+            e.preventDefault();
+            contextMenu.style.display = 'block';
+            contextMenu.style.top = `${e.clientY + window.scrollY}px`;
+            contextMenu.style.left = `${e.clientX + window.scrollX}px`;
+            contextMenu.style.zIndex = '1000';
+
+            const trId = targetElement.id;
+            const editElement = document.getElementById('menu-edit');
+            const deleteElement = document.getElementById('menu-delete');
+
+            editElement.replaceWith(editElement.cloneNode(true));
+            deleteElement.replaceWith(deleteElement.cloneNode(true));
+
+            const newEditElement = document.getElementById('menu-edit');
+            const newDeleteElement = document.getElementById('menu-delete');
+
+            newEditElement.addEventListener('click', function(){
+                supporterGetData(trId);
+            });
+            newDeleteElement.addEventListener('click', function(){
+                contextMenu.style.display = 'none';
+                if(confirm('本当に削除しますか?')){
+                    supporterDelete(trId);
+                }
+            });
+        }
+    });
+
+    function supporterGetData(id){
+        contextMenu.style.display = 'none'
+
+        fetch(`${url}/${id}`, {
+            method: 'GET',
+            headers: {
+                'X-CSRF-Token': csrfToken,
+                'Accept': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error("通信に失敗しました。");
+            }
+        })
+        .then(data => {
+            for (let key in data) {
+                if (data.hasOwnProperty(key)) {
+                    const inputField = form.querySelector(`[name="${key}"]`);
+                    if (inputField) {
+                        inputField.value = data[key];
+                    }
+                }
+            }
+            saveButton.setAttribute('data-id', data.id);
+            supporterModal.show()
+        })
+        .catch(error => {
+            console.error('エラー:', error);
+        })
+    }
+
+    saveButton.addEventListener('click', function(e){
+        e.preventDefault()
+        const id = this.getAttribute('data-id')
+
+        let valid = true;
+
+        inputs.forEach(function(input){
+            const name = input.getAttribute('name');
+            if (input.value.trim() === '') {
+            input.classList.add('is-invalid');
+            valid = false;
+            } else {
+                if (name === 'post') {
+                    const postPattern = /^(?:\d{3}-\d{4}|\d{7})$/;
+                    if (!postPattern.test(input.value)) {
+                        input.classList.add('is-invalid');
+                        valid = false;
+                    } else {
+                        input.classList.remove('is-invalid');
+                    }
+                } else if (name === 'phone') {
+                    const phonePattern = /^(?:\d{4}-\d{2}-\d{4}|\d{3}-\d{4}-\d{4}|\d{10}|\d{11})$/;
+                    if (!phonePattern.test(input.value)) {
+                        input.classList.add('is-invalid');
+                        valid = false;
+                    } else {
+                        input.classList.remove('is-invalid');
+                    }
+                } else {
+                    input.classList.remove('is-invalid');
+                }
+            }
+        })
+
+        if(!valid){
+            return
+        }
+
+      const formData = new FormData(supporterForm);
+
+        fetch(`${url}/${id}`, {
+            method: 'POST',
+            headers: {
+                'X-CSRF-Token': csrfToken,
+                'Accept': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error("通信に失敗しました。");
+            }
+        })
+        .then(data => {
+            const row = document.getElementById(id);
+            const supporter = data.supporter;
+            row.querySelector('.supporter-name').textContent = supporter.name;
+            row.querySelector('.supporter-post').textContent = supporter.post;
+            row.querySelector('.supporter-address').textContent = supporter.address;
+            row.querySelector('.supporter-phone').textContent = supporter.phone;
+            row.querySelector('.supporter-birth').textContent = supporter.birth;
+            supporterModal.hide()
+            toastr.success('編集に成功しました。');
+        })
+        .catch(error => {
+            console.error('エラー:', error);
+        })
+    })
+
+    function supporterDelete(id){
+        fetch(`${url}/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-Token': csrfToken,
+                'Accept': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+        })
+        .then(response =>{
+            if(response.ok){
+                const row = document.getElementById(id);
+                row.remove();
+                toastr.success('削除に成功しました。');
+            }
+        })
+        .catch(error => {
+            console.error('エラー:', error)
+        })
+    }
+
+    document.getElementById('searchAddressBtn').addEventListener('click', function() {
+        let postCode = document.getElementById('supporterPost').value.trim();
+        postCode = postCode.replace('-', '');
+
+        if (postCode.length === 7 && /^\d+$/.test(postCode)) {
+        fetch(`https://zipcloud.ibsnet.co.jp/api/search?zipcode=${postCode}`)
+            .then(response => response.json())
+            .then(data => {
+            if (data.status === 200 && data.results) {
+                const address = `${data.results[0].address1} ${data.results[0].address2} ${data.results[0].address3}`;
+                document.getElementById('supporterAddress').value = address;
+            } else {
+                alert('該当する住所が見つかりませんでした。');
+            }
+            })
+            .catch(error => {
+            console.error('エラー:', error);
+            alert('住所の検索中にエラーが発生しました。');
+            });
+        } else {
+        alert('半角で正しい郵便番号を入力してください。');
+        }
+    });
+
+    document.addEventListener('click', function(e) {
+        if (!contextMenu.contains(e.target)) {
+            contextMenu.style.display = 'none';
+        }
+    });
+
+    const uploadFormButton = document.getElementById('uploadFormButton');
+    uploadFormButton.addEventListener('click', function(e){
+        e.preventDefault()
+
+        const formData = new FormData();
+        const fileField = document.getElementById('pdf');
+
+        if(fileField.files.length === 0){
+            alert('PDFファイルを選択してください')
+        }
+
+        formData.append('pdf', fileField.files[0]);
+        fileField.value = ''; 
+
+        fetch('/advertisements', {
+            method: 'POST',
+            headers: {
+            'X-CSRF-Token': csrfToken
+            },
+            body: formData
+        })
+        .then(response => {
+            if(response.ok){
+                toastr.success('アップロードに成功しました。');
+            }else{
+                toastr.error('アップロードに失敗しました。');
+            }
+        })
+        .catch(error => {
+            console.error('エラー:', error);
+        });
+    })
+</script>

@@ -23,7 +23,7 @@
         box-shadow: none;
     }
 
-    .menu a {
+    .menu a, #supporter {
         padding: 10px;
         border-bottom: 1px solid #ddd;
     }
