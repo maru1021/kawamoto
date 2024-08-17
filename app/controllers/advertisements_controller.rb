@@ -3,14 +3,15 @@ class AdvertisementsController < ApplicationController
 
   def post()
     uploaded_file = params[:pdf]
+    filename = uploaded_file.original_filename.gsub(' ', '.')
 
-    save_path = Rails.root.join('public', 'advertisement', uploaded_file.original_filename)
+    save_path = Rails.root.join('public', 'advertisement', filename)
 
     File.open(save_path, 'wb') do |file|
       file.write(uploaded_file.read)
     end
 
-    input_dir = Rails.root.join('public', 'advertisement').to_s
+    save_path = save_path.to_s
     output_dir = Rails.root.join('public', 'advertisement', 'thumbnails').to_s
 
     system("python lib/tasks/pdf_to_image.py #{save_path} #{output_dir}")
