@@ -13,7 +13,7 @@ class AdvertisementsController < ApplicationController
     input_dir = Rails.root.join('public', 'advertisement').to_s
     output_dir = Rails.root.join('public', 'advertisement', 'thumbnails').to_s
 
-    system("python lib/tasks/pdf_to_image.py #{input_dir} #{output_dir}")
+    system("python lib/tasks/pdf_to_image.py #{save_path} #{output_dir}")
 
     render json: { message: 'PDFがアップロードされました。' }, status: :ok
   end
