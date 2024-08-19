@@ -22,7 +22,8 @@ class SupporterController < ApplicationController
       name: params[:name],
       post: post,
       address: params[:address],
-      phone: phone
+      phone: phone,
+      birth: params[:birth]
     )
       render json: { message: "情報が更新されました", supporter: supporter }, status: :ok
     else
