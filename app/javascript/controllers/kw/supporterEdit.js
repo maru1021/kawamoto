@@ -1,6 +1,6 @@
-import { csrfToken, supporterUrl, supporterModal, supporterSaveButton } from "../home/const";
-import { supporterValid } from "../home/supporterValid";
-import { supporterContextMenu } from "./const";
+import { csrfToken, supporterUrl, supporterModal, supporterSaveButton } from "controllers/home/const";
+import { supporterValid } from "controllers/home/supporterValid";
+import { supporterContextMenu } from "controllers/kw/const";
 
 export function supporterGetData(id){
     supporterContextMenu.style.display = 'none'

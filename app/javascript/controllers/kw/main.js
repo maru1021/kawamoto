@@ -1,7 +1,7 @@
-import { supporterContext } from './supporterContext';
-import { searchSupporter } from './searchSupporter';
-import { searchAddress } from '../home/searchAddress';
-import { PDFUpload } from './PDFUpload';
+import { supporterContext } from 'controllers/kw/supporterContext';
+import { searchSupporter } from 'controllers/kw/searchSupporter';
+import { searchAddress } from 'controllers/home/searchAddress';
+import { PDFUpload } from 'controllers/kw/PDFUpload';
 
 document.addEventListener('DOMContentLoaded', function() {
     const supporterTable = document.getElementById('supporterTable');

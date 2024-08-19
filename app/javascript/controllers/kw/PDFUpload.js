@@ -1,4 +1,4 @@
-import { csrfToken } from "../home/const";
+import { csrfToken } from "controllers/home/const";
 
 export function PDFUpload(e){
     uploadFormButton.disabled = true;

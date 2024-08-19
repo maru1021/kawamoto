@@ -1,4 +1,4 @@
-import { csrfToken, supporterUrl } from '../home/const'
+import { csrfToken, supporterUrl } from 'controllers/home/const'
 
 export function supporterDelete(id){
     fetch(`${supporterUrl}/${id}`, {

@@ -1,6 +1,6 @@
-import { supporterGetData } from './supporterEdit';
-import { supporterDelete } from './supporterDelete';
-import { supporterContextMenu } from './const';
+import { supporterGetData } from 'controllers/kw/supporterEdit';
+import { supporterDelete } from 'controllers/kw/supporterDelete';
+import { supporterContextMenu } from 'controllers/kw/const';
 
 export function supporterContext(e){
     const targetElement = e.target.closest('tr');
