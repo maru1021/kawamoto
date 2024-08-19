@@ -1,5 +1,6 @@
+import { supporterInputs } from "controllers/home/const";
+
 export function supporterValid(){
-    const supporterInputs = supporterForm.querySelectorAll('input:not([id="csrfTokenField"])');
     let valid = true;
 
     supporterInputs.forEach(function(input){

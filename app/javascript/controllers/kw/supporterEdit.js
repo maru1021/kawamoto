@@ -1,4 +1,4 @@
-import { csrfToken, supporterUrl, supporterModal, supporterSaveButton } from "controllers/home/const";
+import { csrfToken, supporterUrl, supporterModal, supporterForm, supporterSaveButton } from "controllers/home/const";
 import { supporterValid } from "controllers/home/supporterValid";
 import { supporterContextMenu } from "controllers/kw/const";
 
@@ -40,7 +40,6 @@ export function supporterGetData(id){
 
 function supporterEdit(e){
     e.preventDefault()
-    const supporterForm = document.getElementById('supporterForm');
     const id = this.getAttribute('data-id')
 
     let valid = supporterValid()
