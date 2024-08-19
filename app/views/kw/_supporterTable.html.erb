@@ -1,0 +1,29 @@
+<div id="searchfield">
+    <label for=search>検索</label>
+    <input type="text" id="search">
+</div>
+
+<div id="supporter">
+    <table id="supporterTable">
+        <thead>
+            <tr>
+                <th>名前</th>
+                <th>郵便番号</th>
+                <th>住所</th>
+                <th>電話番号</th>
+                <th>生年月日</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @datas.each do |data| %>
+                <tr id="<%= data.id %>">
+                    <td class="supporter-name"><%= data.name %></td>
+                    <td class="supporter-post"><%= data.post %></td>
+                    <td class="supporter-address"><%= data.address %></td>
+                    <td class="supporter-phone"><%= data.phone %></td>
+                    <td class="supporter-birth"><%= data.birth %></td>
+                </tr>
+                <% end %>
+        </tbody>
+    </table>
+</div>
