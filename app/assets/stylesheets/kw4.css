@@ -75,8 +75,13 @@
     margin-top: 2%;
 }
 
+.notis img:hover{
+    width: 100%;
+}
+
 .notis pre {
-    margin: 10%;
+    margin: 8%;
+    margin-top: 0%;
     text-align: left;
     font-size: 20px;
 }
