@@ -12,7 +12,9 @@
             <h3><%= noti.title %></h3>
             <div class="notiIMG">
               <% if noti.image.attached? %>
+              <a href="<%= url_for(noti.image) %>" target="_blank">
                 <%= image_tag noti.image %>
+              </a>
               <% end %>
             </div>
             <pre><%= noti.article %></pre>
