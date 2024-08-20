@@ -115,6 +115,11 @@
     margin-right: 5%;
 }
 
+.noti-date {
+    text-align: right;
+    margin-right: 3%;
+}
+
 @media (max-width: 768px) {
     .notis-slide {
         flex: 0 0 100%;
@@ -131,10 +136,6 @@
         font-size: 12px;
         width: 100%;
         padding: 0px;
-    }
-
-    .notis pre {
-        font-size: 12px;
     }
 }
 

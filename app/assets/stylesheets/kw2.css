@@ -68,7 +68,7 @@
         margin: -20px 0 20px -20px;
     }
 
-    .policy div, .voice div, .profile div {
+    .policy div, .voice div, .profile div .notis pre{
         padding: 3px;
         font-size: 12px;
     }
