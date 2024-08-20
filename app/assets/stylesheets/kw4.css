@@ -69,6 +69,10 @@
     text-align: center;
 }
 
+.notis h3 {
+    margin-top: 2%;
+}
+
 .notis img {
     width: 60%;
     margin-bottom: 3%;
@@ -125,8 +129,12 @@
 
     .notis {
         font-size: 12px;
-        width: 90%;
+        width: 85%;
         padding: 0px;
+    }
+
+    .notis pre {
+        font-size: 12px;
     }
 }
 
