@@ -9,12 +9,12 @@
       <% @notis.each do |noti| %>
         <div class="notis-slide">
           <div class="notis" id="noti-<%= noti.id %>">
+            <h3><%= noti.title %></h3>
             <div class="notiIMG">
               <% if noti.image.attached? %>
                 <%= image_tag noti.image %>
               <% end %>
             </div>
-            <h3><%= noti.title %></h3>
             <pre><%= noti.article %></pre>
           </div>
         </div>

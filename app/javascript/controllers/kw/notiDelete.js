@@ -25,10 +25,10 @@ export function notiDelete(id){
             html += `
             <div class="notis-slide">
                 <div class="notis" id="noti-${noti.id}">
+                    <h3>${noti.title}</h3>
                     <div class="notiIMG">
                         ${noti.image_url ? `<img src="${noti.image_url}" alt="noti image" class="main-img">` : ''}
                     </div>
-                    <h3>${noti.title}</h3>
                     <pre>${noti.article}</pre>
                 </div>
             </div>`
