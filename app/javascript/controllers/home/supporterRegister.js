@@ -1,7 +1,7 @@
 import { supporterValid } from "controllers/home/supporterValid";
 import { csrfToken, supporterModal, supporterForm, supporterInputs, supporterSaveButton } from "controllers/home/const";
 
-export function addSupporter(){
+export function supporterRegister(){
     const thanks = document.getElementById('thanks');
 
     supporterModal.show();

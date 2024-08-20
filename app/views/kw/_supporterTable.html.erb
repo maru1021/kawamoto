@@ -1,3 +1,7 @@
+<div class="title-back">
+  <div class="title">後援会名簿</div>
+</div>
+
 <div id="searchfield">
     <label for=search>検索</label>
     <input type="text" id="search">
@@ -15,13 +19,13 @@
             </tr>
         </thead>
         <tbody>
-            <% @datas.each do |data| %>
-                <tr id="<%= data.id %>">
-                    <td class="supporter-name"><%= data.name %></td>
-                    <td class="supporter-post"><%= data.post %></td>
-                    <td class="supporter-address"><%= data.address %></td>
-                    <td class="supporter-phone"><%= data.phone %></td>
-                    <td class="supporter-birth"><%= data.birth %></td>
+            <% @supporters.each do |supporter| %>
+                <tr id="<%= supporter.id %>">
+                    <td class="supporter-name"><%= supporter.name %></td>
+                    <td class="supporter-post"><%= supporter.post %></td>
+                    <td class="supporter-address"><%= supporter.address %></td>
+                    <td class="supporter-phone"><%= supporter.phone %></td>
+                    <td class="supporter-birth"><%= supporter.birth %></td>
                 </tr>
                 <% end %>
         </tbody>

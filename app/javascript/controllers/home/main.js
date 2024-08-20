@@ -1,7 +1,8 @@
 import { menuDisp } from "controllers/home/menuDisp";
-import { addSupporter } from "controllers/home/addSupporter";
+import { supporterRegister } from "controllers/home/supporterRegister";
 import { advertisementSlide } from "controllers/home/advertisementSlide";
 import { searchAddress } from "controllers/home/searchAddress";
+import { notiSlide } from "controllers/home/notiSlide"
 
 document.addEventListener('DOMContentLoaded', function() {
     let currentIndex = 0;
@@ -27,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     supporterLink.addEventListener('click', function() {
-        addSupporter(visibleCount);
+        supporterRegister();
     });
 
     document.getElementById('prev').addEventListener('click', function(){
@@ -39,5 +40,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById('searchAddressBtn').addEventListener('click', function() {
         searchAddress()
+    });
+
+    let notiCurrentIndex = 0;
+    const notiSlideCount = document.querySelectorAll('.notis-slide').length;
+
+    document.getElementById('noti-prev').addEventListener('click', function(){
+        notiCurrentIndex = notiSlide(-1, notiCurrentIndex, notiSlideCount);
+    });
+
+    document.getElementById('noti-next').addEventListener('click', function(){
+        notiCurrentIndex = notiSlide(1, notiCurrentIndex, notiSlideCount);
     });
 });

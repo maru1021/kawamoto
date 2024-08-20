@@ -1,0 +1,22 @@
+<div class="modal fade" id="PDFRegisterModal" tabindex="-1" aria-labelledby="PDFRegisterModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="PDFRegisterModalLabel">議会報告PDFファイル登録</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="uploadForm" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="pdf">議会報告PDFファイル</label>
+                <input type="file" id="pdf" name="pdf" accept="application/pdf" class="form-control-file">
+            </div>
+            <hr>
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary" id="uploadFormButton">アップロード</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

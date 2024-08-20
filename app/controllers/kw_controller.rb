@@ -14,7 +14,8 @@ class KwController < ApplicationController
   end
 
   def index
-    @datas = Supporter.all
+    @supporters = Supporter.all
+    @notis = Noti.all.order('id desc')
     {message: true}
   end
 end

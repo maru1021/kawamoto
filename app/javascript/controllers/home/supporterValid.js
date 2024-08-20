@@ -6,8 +6,8 @@ export function supporterValid(){
     supporterInputs.forEach(function(input){
         const name = input.getAttribute('name');
         if (input.value.trim() === '') {
-        input.classList.add('is-invalid');
-        valid = false;
+            input.classList.add('is-invalid');
+            valid = false;
         } else {
             if (name === 'post') {
                 const postPattern = /^(?:\d{3}-\d{4}|\d{7})$/;

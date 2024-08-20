@@ -1,0 +1,25 @@
+<div class="title-back">
+  <div class="title">お知らせ</div>
+</div>
+
+<div class="notis-wrapper">
+  <button class="carousel-button" id="noti-prev" style="display: none;">◀</button>
+  <div class="notis-container">
+    <div class="notis-carousel" id="notis-carousel">
+      <% @notis.each do |noti| %>
+        <div class="notis-slide">
+          <div class="notis" id="noti-<%= noti.id %>">
+            <div class="notiIMG">
+              <% if noti.image.attached? %>
+                <%= image_tag noti.image %>
+              <% end %>
+            </div>
+            <h3><%= noti.title %></h3>
+            <pre><%= noti.article %></pre>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <button class="carousel-button" id="noti-next">▶</button>
+</div>

@@ -1,8 +1,10 @@
 import { csrfToken } from "controllers/home/const";
+import { PDFRegisteModal } from 'controllers/kw/const';
 
 export function PDFUpload(e){
+    PDFRegisteModal.hide();
     uploadFormButton.disabled = true;
-    e.preventDefault()
+    e.preventDefault();
 
     const formData = new FormData();
     const fileField = document.getElementById('pdf');

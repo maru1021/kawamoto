@@ -1,6 +1,4 @@
 class AdvertisementsController < ApplicationController
-  protect_from_forgery with: :null_session
-
   def post()
     uploaded_file = params[:pdf]
     filename = uploaded_file.original_filename.gsub(' ', '.')

@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   def index
     @pdf_thumbnails = Dir.glob(Rails.root.join('public', 'advertisement', 'thumbnails', '*_page_1.png')).sort_by { |file| File.ctime(file) }.reverse
+    @notis = Noti.all.order('id desc')
   end
 
   def post

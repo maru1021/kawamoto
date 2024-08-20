@@ -12,4 +12,8 @@ Rails.application.routes.draw do
   post "supporter/:id" => "supporter#post"
   delete "supporter/:id" => "supporter#delete"
   post "advertisements" => "advertisements#post"
+  post "noti/:id" => "noti#edit"
+  post "noti" => "noti#regist"
+  get "noti/:id" => "noti#get"
+  delete "noti/:id" => "noti#delete"
 end
