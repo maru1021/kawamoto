@@ -60,7 +60,7 @@
 
 .notis {
     box-sizing: border-box;
-    width: 100%;
+    width: 0%;
     margin: 10px;
     padding: 10px;
     border: 1px solid #ddd;
@@ -75,7 +75,9 @@
     margin-top: 2%;
 }
 
-
+.notis img:hover{
+    width: 100%;
+}
 
 .notis pre {
     margin: 8%;
@@ -122,8 +124,8 @@
     }
 
     .notis {
-        font-size: 16px;
-        width: 100%;
+        font-size: 12px;
+        width: 90%;
         padding: 0px;
     }
 }
