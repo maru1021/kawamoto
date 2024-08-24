@@ -234,6 +234,7 @@ body {
 .achievements h3 {
   text-align: center;
   font-size: 26px;
+  text-decoration: underline;
 }
 
 .achievements:nth-child(odd) {
