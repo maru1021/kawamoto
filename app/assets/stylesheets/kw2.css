@@ -68,7 +68,7 @@
         margin: -20px 0 20px -20px;
     }
 
-    .policy div, .voice div, .profile div {
+    .policy div, .voice div, .profile div, .achievements div {
         padding: 3px;
         font-size: 12px;
     }
@@ -133,6 +133,15 @@
     .achievements-container {
         justify-content: center; /* 中央揃えにする */
       }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    .achievements h3 {
+        text-align: center;
+        font-size: 18px;
+    }
 
     .achievements {
         flex: 0 1 100%;
