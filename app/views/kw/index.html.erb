@@ -29,5 +29,5 @@
 <%= javascript_import_module_tag "controllers/kw/main" %>
 
 <script>
-    let tableData = <%= raw @supporters.to_json %>;
+    let tableData = <%= json_escape(@supporters.to_json).html_safe %>;
 </script>

@@ -1,4 +1,6 @@
 class NotiController < ApplicationController
+  before_action :authenticate_user!, except: [:get]
+
   def regist()
     noti = Noti.create(title: params['title'], article: params['article'])
     if params[:image].present?

@@ -1,4 +1,6 @@
 class SupporterController < ApplicationController
+  before_action :authenticate_user!
+
   def get()
     supporter = Supporter.find(params[:id])
     render json: supporter
