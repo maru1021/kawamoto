@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let visibleCount;
     const supporterLink = document.getElementById('supporter');
 
-    if (window.innerWidth <= 480) {
+    if (window.innerWidth <= 767) {
         const lineLink = document.getElementById('line-link');
         const partyLink = document.getElementById('party-link');
         const hoverText = document.querySelectorAll('.hover-text')

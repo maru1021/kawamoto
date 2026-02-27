@@ -1,26 +1,38 @@
+/* ========================================
+   川本まさき 公式サイト スタイルシート
+   構成: ベース → タブレット → モバイル
+   ======================================== */
+
+/* --- リセット・共通 --- */
+body {
+  padding-top: 110px;
+  font-family: "Noto Serif JP", serif;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* --- ヘッダー --- */
 .header {
   position: fixed;
   width: 100%;
-  top: 0px;
+  top: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: #fcfcfc;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding: 5px 0;
   z-index: 999;
-  opacity: 0.98 ;
+  opacity: 0.98;
 }
 
 #menuToggle {
   display: none;
-}
-
-body {
-  padding-top: 110px;
-  font-family: "Noto Serif JP", serif;
-  margin: 0;
 }
 
 .name {
@@ -65,6 +77,7 @@ body {
   font-size: 16px;
 }
 
+/* --- ナビゲーションメニュー --- */
 .menu {
   display: flex;
   gap: 15px;
@@ -102,6 +115,13 @@ body {
   width: 100%;
 }
 
+#supporter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 .party-link-logo {
   width: 100px;
 }
@@ -111,12 +131,14 @@ body {
   margin-top: -5px;
 }
 
+/* --- メイン画像 --- */
 .main-img {
   margin-top: 1.5%;
   width: 100%;
 }
 
-.title-back{
+/* --- セクションタイトル --- */
+.title-back {
   width: 100%;
   text-align: center;
 }
@@ -137,13 +159,13 @@ body {
   left: 50%;
   bottom: 0;
   height: 4px;
-  width: 100% ;
+  width: 100%;
   background-color: #0056b3;
   opacity: 0.7;
   transform: translateX(-50%);
-  margin-top: -10px;
 }
 
+/* --- 政策・市民の声セクション --- */
 .policy, .voice {
   position: relative;
   background-color: #eff8fe;
@@ -168,6 +190,7 @@ body {
   font-size: 20px;
 }
 
+/* --- プロフィール --- */
 .profile-container {
   display: flex;
   align-items: center;
@@ -181,36 +204,21 @@ body {
   width: 300px;
 }
 
-.profile-text{
+.profile-text {
   width: 50%;
   padding: 20px;
 }
 
-.profile-name{
+.profile-name {
   font-size: 30px;
   margin-left: -10%;
 }
 
-.history{
+.history {
   margin-left: -100px;
 }
 
-.footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-.address {
-  margin-left: 3%;
-}
-
-.party-logo {
-  width: 100px;
-  height: auto;
-  margin-left:50%;
-}
-
+/* --- 実績 --- */
 .achievements-container {
   display: flex;
   flex-wrap: wrap;
@@ -245,6 +253,7 @@ body {
   margin-right: auto;
 }
 
+/* --- 議会報告カルーセル --- */
 .advertisement-wrapper {
   position: relative;
   width: 100%;
@@ -262,17 +271,17 @@ body {
 .advertisement {
   display: flex;
   transition: transform 0.3s ease;
-  width: max-content;
 }
 
 .advertisement-thumbnail {
   position: relative;
-  flex: 0 0 auto;
+  flex: 0 0 calc(100% / 3);
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .advertisement-thumbnail img {
-  width: 395px;
+  width: 100%;
   height: auto;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
@@ -305,6 +314,72 @@ body {
   transform: translate(-50%, -50%) scale(1.1);
 }
 
+/* --- お知らせカルーセル --- */
+.notis-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notis-container {
+  overflow: hidden;
+  width: 80%;
+  max-width: 100%;
+}
+
+.notis-carousel {
+  display: flex;
+  transition: transform 0.3s ease;
+}
+
+.notis-slide {
+  flex: 0 0 50%;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.notis {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.notis h3 {
+  margin-top: 2%;
+}
+
+.notis img {
+  width: 60%;
+  margin-bottom: 3%;
+  margin-top: 2%;
+}
+
+.notis img:hover {
+  width: 100%;
+}
+
+.notis pre {
+  font-family: "Noto Serif JP", serif;
+  margin: 8%;
+  margin-top: 0;
+  text-align: left;
+  font-size: 20px;
+}
+
+.noti-date {
+  text-align: right;
+  margin-right: 3%;
+  margin-bottom: 3%;
+}
+
+/* --- カルーセル共通ボタン --- */
 .carousel-button {
   background-color: rgba(255, 255, 255, 0.8);
   border: none;
@@ -329,4 +404,336 @@ body {
 #next {
   right: 0;
   margin-right: 5%;
+}
+
+#noti-prev {
+  left: 0;
+  margin-left: 5%;
+}
+
+#noti-next {
+  right: 0;
+  margin-right: 5%;
+}
+
+/* --- フッター --- */
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.address {
+  margin-left: 3%;
+}
+
+.party-logo {
+  width: 100px;
+  height: auto;
+  margin-left: 50%;
+}
+
+/* ========================================
+   タブレット (481px - 767px)
+   ======================================== */
+@media (max-width: 767px) {
+  body {
+    padding-top: 90px;
+  }
+
+  .name img {
+    height: 80px;
+  }
+
+  .name-text p:first-child {
+    font-size: 16px;
+  }
+
+  .name-text p:nth-child(2) {
+    font-size: 26px;
+  }
+
+  .name-text p:nth-child(3) {
+    font-size: 14px;
+    left: 30px;
+  }
+
+  /* ハンバーガーメニュー */
+  .menu {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fcfcfc;
+    z-index: 998;
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0;
+    padding: 20px;
+    border: none;
+    box-shadow: none;
+  }
+
+  .menu a, #supporter {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  #menuToggle {
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: 10px;
+    font-size: 30px;
+    z-index: 999;
+  }
+
+  .title {
+    font-size: 40px;
+  }
+
+  .policy h2, .voice h2 {
+    font-size: 22px;
+  }
+
+  .policy div, .voice div, .profile div, .achievements div {
+    font-size: 16px;
+  }
+
+  /* プロフィール */
+  .profile-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+  }
+
+  .profile-img {
+    width: 200px;
+  }
+
+  .profile-text {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .profile-name {
+    font-size: 24px;
+    text-align: center;
+    margin-left: 0;
+  }
+
+  .history {
+    margin-left: 0;
+  }
+
+  /* 実績 */
+  .achievements-container {
+    gap: 20px;
+  }
+
+  .achievements {
+    flex: 0 1 100%;
+    max-width: 90%;
+    margin: 10px auto;
+  }
+
+  .achievements:nth-child(odd) {
+    margin-left: auto;
+  }
+
+  .achievements:nth-child(even) {
+    margin-right: auto;
+  }
+
+  .achievements h3 {
+    font-size: 22px;
+  }
+
+  /* 議会報告カルーセル */
+  .advertisement-container {
+    width: 90%;
+  }
+
+  .advertisement-thumbnail {
+    flex: 0 0 100%;
+  }
+
+  /* お知らせ */
+  .notis-slide {
+    flex: 0 0 100%;
+  }
+
+  .notis-container {
+    width: 95%;
+    margin-left: 0;
+  }
+
+  .notis {
+    font-size: 14px;
+    padding: 5px;
+  }
+
+  .notis pre {
+    font-size: 14px;
+  }
+
+  /* フッター */
+  .footer {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .footer .name-text p:not(:first-child) {
+    left: 0;
+  }
+
+  .footer .name-text p:nth-child(3) {
+    left: 0;
+  }
+
+  .party-logo {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .address {
+    margin-left: 0;
+    text-align: center;
+  }
+}
+
+/* ========================================
+   モバイル (480px 以下)
+   ======================================== */
+@media (max-width: 480px) {
+  body {
+    padding-top: 80px;
+  }
+
+  .name img {
+    height: 60px;
+  }
+
+  .name-text {
+    text-align: center;
+  }
+
+  .name-text p:first-child {
+    font-size: 12px;
+  }
+
+  .name-text p:not(:first-child) {
+    left: 0;
+  }
+
+  .name-text p:nth-child(2) {
+    font-size: 18px;
+  }
+
+  .title {
+    font-size: 30px;
+  }
+
+  .policy h2, .voice h2 {
+    font-size: 17px;
+  }
+
+  .policy div, .voice div, .profile div, .achievements div {
+    font-size: 12px;
+  }
+
+  /* プロフィール */
+  .profile-container {
+    padding: 10px;
+  }
+
+  .profile-img {
+    width: 30%;
+  }
+
+  .profile-text {
+    padding: 10px;
+    text-align: center;
+    font-size: 12px;
+  }
+
+  .profile-name {
+    font-size: 18px;
+  }
+
+  /* 実績 */
+  .achievements-container {
+    justify-content: center;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+
+  .achievements h3 {
+    font-size: 18px;
+  }
+
+  .achievements {
+    margin: 10px 0;
+  }
+
+  .achievements:nth-child(odd) {
+    margin-left: 0;
+  }
+
+  .achievements:nth-child(even) {
+    margin-right: 0;
+  }
+
+  /* 議会報告カルーセル */
+  .advertisement-container {
+    width: 95%;
+  }
+
+  /* お知らせ */
+  .notis-container {
+    width: 95%;
+  }
+
+  .notis {
+    font-size: 12px;
+    padding: 5px;
+    margin: 5px 0;
+  }
+
+  .notis pre {
+    font-size: 12px;
+    margin: 5%;
+  }
+
+  .notis img {
+    width: 80%;
+  }
+
+  .notis img:hover {
+    width: 90%;
+  }
+
+  /* フッター */
+  .footer .name-text {
+    align-items: center;
+  }
+
+  .address {
+    font-size: 10px;
+  }
+
+  .party-logo {
+    width: 40px;
+  }
+
+  .main-img {
+    margin-top: 0;
+  }
 }
