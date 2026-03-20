@@ -2,54 +2,49 @@ import { menuDisp } from "controllers/home/menuDisp";
 import { supporterRegister } from "controllers/home/supporterRegister";
 import { advertisementSlide } from "controllers/home/advertisementSlide";
 import { searchAddress } from "controllers/home/searchAddress";
-import { notiSlide } from "controllers/home/notiSlide"
+import { scrollEffects } from "controllers/home/scrollEffects";
+import { heroAnim } from "controllers/home/heroAnim";
 
-document.addEventListener('DOMContentLoaded', function() {
+function init() {
     let currentIndex = 0;
     let visibleCount;
     const supporterLink = document.getElementById('supporter');
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
 
-    if (window.innerWidth <= 767) {
-        const lineLink = document.getElementById('line-link');
-        const partyLink = document.getElementById('party-link');
-        const hoverText = document.querySelectorAll('.hover-text')
-
+    if (window.innerWidth <= 768) {
         visibleCount = 1;
         menuDisp();
-        lineLink.innerHTML = "公式Line";
-        partyLink.innerHTML = "日本共産党リンク";
-        supporterLink.style.display = "inline-block";
-        supporterLink.style.textAlign = "left";
-        hoverText.forEach(function(element) {
-            element.style.display = "none";
-        })
+        document.querySelectorAll('.carousel-hover-label').forEach(el => {
+            el.style.display = "none";
+        });
     } else {
         visibleCount = 3;
+    }
+
+    const thumbnails = document.querySelectorAll('.advertisement-thumbnail');
+    if (thumbnails.length <= visibleCount) {
+        nextBtn.classList.add('is-hidden');
     }
 
     supporterLink.addEventListener('click', function() {
         supporterRegister();
     });
 
-    document.getElementById('prev').addEventListener('click', function(){
+    prevBtn.addEventListener('click', function() {
         currentIndex = advertisementSlide(-1, visibleCount, currentIndex);
-    })
-    document.getElementById('next').addEventListener('click', function(){
+    });
+    nextBtn.addEventListener('click', function() {
         currentIndex = advertisementSlide(1, visibleCount, currentIndex);
     });
 
     document.getElementById('searchAddressBtn').addEventListener('click', function() {
-        searchAddress()
+        searchAddress();
     });
 
-    let notiCurrentIndex = 0;
-    const notiSlideCount = document.querySelectorAll('.notis-slide').length;
+    scrollEffects();
+    heroAnim();
+}
 
-    document.getElementById('noti-prev').addEventListener('click', function(){
-        notiCurrentIndex = notiSlide(-1, notiCurrentIndex, notiSlideCount);
-    });
-
-    document.getElementById('noti-next').addEventListener('click', function(){
-        notiCurrentIndex = notiSlide(1, notiCurrentIndex, notiSlideCount);
-    });
-});
+document.addEventListener('DOMContentLoaded', init);
+document.addEventListener('turbo:load', init);

@@ -1,24 +1,31 @@
-<div class="header" id="header">
-  <div class="name">
-    <%= image_tag 'face.png' %>
-    <div class="name-text">
-      <p>御所市議会議員</p>
-      <p>川本 まさき</p>
-      <p>Official Site</p>
+<header class="header" id="header">
+  <div class="header-inner">
+    <a href="#" class="header-brand">
+      <%= image_tag 'face.png', class: 'header-avatar' %>
+      <div class="header-brand-text">
+        <span class="header-title-sub">御所市議会議員</span>
+        <span class="header-title-name">川本 まさき</span>
+      </div>
+    </a>
+
+    <nav class="menu" id="menu" data-turbo="false">
+      <a href="#policy">政策</a>
+      <a href="#profile">プロフィール</a>
+      <a href="#voice">市民の声</a>
+      <a href="#achievements">実績</a>
+      <a href="#arliament">議会報告</a>
+      <div id="supporter" class="menu-supporter-btn">後援会入会</div>
+      <a id="line-link" href="https://liff.line.me/1645278921-kWRPP32q/?accountId=780wuzcs" target="_blank" rel="noopener noreferrer" class="menu-line-btn">
+        <%= image_tag 'linelogo.png', class: "line-link-logo" %>
+        <span>LINE相談</span>
+      </a>
+    </nav>
+
+    <div id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
   </div>
-
-  <div class="menu" id="menu">
-    <a href="#profile">プロフィール</a>
-    <a href="#voice">市民の声</a>
-    <a href="#achievements">実績</a>
-    <a href="#arliament">議会報告等</a>
-    <div id="supporter">後援会入会</div>
-    <a id="line-link" href="https://liff.line.me/1645278921-kWRPP32q/?accountId=780wuzcs" target="_blank" rel="noopener noreferrer">
-      <%= image_tag 'linelogo.png', class: "line-link-logo" %>
-    </a>
-    <a id="party-link" href="https://www.jcp.or.jp/" target="_blank"><%= image_tag 'party.png', class: "party-link-logo" %></a>
-  </div>
-</div>
-
-<div id="menuToggle">☰</div>
+  <div class="scroll-progress" id="scrollProgress"></div>
+</header>

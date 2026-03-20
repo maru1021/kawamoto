@@ -1,12 +1,51 @@
-<div class="footer">
-  <div class="name-text">
-    <p>御所市議会議員</p>
-    <p>川本 まさき</p>
-    <%= image_tag 'party.png', class: "party-logo" %>
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-inner">
+      <div class="footer-profile">
+        <p class="footer-subtitle">御所市議会議員</p>
+        <p class="footer-name">川本 まさき</p>
+        <p class="footer-slogan">市民の声を市政に届ける</p>
+      </div>
+
+      <nav class="footer-nav" data-turbo="false">
+        <p class="footer-nav-title">MENU</p>
+        <a href="#policy">政策</a>
+        <a href="#profile">プロフィール</a>
+        <a href="#voice">市民の声</a>
+        <a href="#achievements">実績</a>
+        <a href="#arliament">議会報告</a>
+      </nav>
+
+      <div class="footer-contact">
+        <p class="footer-nav-title">CONTACT</p>
+        <div class="footer-contact-item">
+          <span>住所</span>
+          <span>〒639-2314 奈良県御所市幸町296-1</span>
+        </div>
+        <div class="footer-contact-item">
+          <span>TEL・Fax</span>
+          <a href="tel:0745623858">0745-62-3858</a>
+        </div>
+        <div class="footer-contact-item">
+          <span>Mail</span>
+          <a href="mailto:dffnq316@yahoo.co.jp">dffnq316@yahoo.co.jp</a>
+        </div>
+        <div class="footer-sns">
+          <a href="https://liff.line.me/1645278921-kWRPP32q/?accountId=780wuzcs" target="_blank" rel="noopener noreferrer" class="footer-line-btn">
+            <%= image_tag 'linelogo.png', class: "footer-line-logo" %>
+            <span>LINE で相談</span>
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="address">
-    <div>〒639-2314 奈良県御所市幸町296-1</div>
-    <div>TEL・Fax : <a href="tel:0745623858">0745-62-3858</a></div>
-    <div>Mail : <a href="mailto:dffnq316@yahoo.co.jp">dffnq316@yahoo.co.jp</a></div>
+
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <a href="https://www.jcp.or.jp/" target="_blank" rel="noopener noreferrer">
+        <%= image_tag 'party.png', class: "footer-party-logo" %>
+      </a>
+      <span>&copy; 2024 川本まさき事務所</span>
+    </div>
   </div>
-</div>
+</footer>

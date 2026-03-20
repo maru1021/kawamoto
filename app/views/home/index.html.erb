@@ -1,23 +1,75 @@
 <%= render 'header' %>
 
-<%= image_tag 'IMG_1369.JPG', class: 'main-img' %>
+<section class="hero">
+  <%= image_tag 'IMG_1369.JPG', class: 'hero-img', id: 'heroImg' %>
+  <div class="hero-overlay">
+    <div class="hero-particles">
+      <div class="hero-particle"></div>
+      <div class="hero-particle"></div>
+      <div class="hero-particle"></div>
+      <div class="hero-particle"></div>
+      <div class="hero-particle"></div>
+    </div>
+    <div class="hero-content">
+      <p class="hero-subtitle hero-anim" data-delay="0">御所市議会議員</p>
+      <h1 class="hero-name hero-anim" data-delay="1">川本 まさき</h1>
+      <div class="hero-divider hero-anim" data-delay="2"></div>
+      <p class="hero-text hero-anim" data-delay="3">葛城の自然と歴史を未来へ</p>
+      <p class="hero-sub-text hero-anim" data-delay="4">市民の声を市政に届ける</p>
+    </div>
+    <div class="hero-scroll-indicator">
+      <span>Scroll</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </div>
+</section>
 
-<%= render 'noti' %>
+<section class="section-policy" id="policy-section">
+  <div class="section-deco-top"></div>
+  <%= render 'policy' %>
+</section>
 
-<%= render 'policy' %>
+<div class="section-curve section-curve--warm">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,60 C360,0 1080,0 1440,60 L1440,60 L0,60 Z"></path></svg>
+</div>
 
-<%= render 'profile' %>
+<section class="section-profile" id="profile-section">
+  <%= render 'profile' %>
+</section>
 
-<%= render 'voice' %>
+<div class="section-curve section-curve--cool">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,0 C480,60 960,60 1440,0 L1440,60 L0,60 Z"></path></svg>
+</div>
 
-<%= render 'achievement' %>
+<section class="section-voice" id="voice-section">
+  <%= render 'voice' %>
+</section>
 
-<%= render 'advertisement' %>
+<div class="section-curve section-curve--sage">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,60 C360,0 1080,0 1440,60 L1440,60 L0,60 Z"></path></svg>
+</div>
+
+<section class="section-achievement" id="achievement-section">
+  <%= render 'achievement' %>
+</section>
+
+<div class="section-curve section-curve--beige">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,0 C480,60 960,60 1440,0 L1440,60 L0,60 Z"></path></svg>
+</div>
+
+<section class="section-report" id="report-section">
+  <%= render 'advertisement' %>
+</section>
 
 <%= render 'supporterModal' %>
+
+<button class="back-to-top" id="backToTop" aria-label="トップへ戻る">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="18 15 12 9 6 15"></polyline>
+  </svg>
+</button>
 
 <%= render 'footer' %>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 <%= javascript_import_module_tag "controllers/home/main" %>
-

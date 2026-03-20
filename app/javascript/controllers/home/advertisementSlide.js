@@ -8,22 +8,23 @@ export function advertisementSlide(direction, visibleCount, currentIndex) {
 
     currentIndex += direction;
 
-    if (currentIndex <= 0) {
-        prevButton.style.display = 'none';
-    } else {
-        prevButton.style.display = 'block';
-    }
-
-    if (currentIndex >= maxIndex) {
-        nextButton.style.display = 'none';
-    } else {
-        nextButton.style.display = 'block';
-    }
-
     if (currentIndex < 0) {
         currentIndex = 0;
     } else if (currentIndex > maxIndex) {
         currentIndex = maxIndex;
+    }
+
+    // Toggle button visibility via class
+    if (currentIndex <= 0) {
+        prevButton.classList.add('is-hidden');
+    } else {
+        prevButton.classList.remove('is-hidden');
+    }
+
+    if (currentIndex >= maxIndex) {
+        nextButton.classList.add('is-hidden');
+    } else {
+        nextButton.classList.remove('is-hidden');
     }
 
     advertisementElement.style.transform = `translateX(${-currentIndex * thumbnailWidth}px)`;
