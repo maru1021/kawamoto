@@ -5,46 +5,45 @@ import { searchAddress } from "controllers/home/searchAddress";
 import { scrollEffects } from "controllers/home/scrollEffects";
 import { heroAnim } from "controllers/home/heroAnim";
 
-function init() {
-    let currentIndex = 0;
-    let visibleCount;
-    const supporterLink = document.getElementById('supporter');
-    const prevBtn = document.getElementById('prev');
-    const nextBtn = document.getElementById('next');
+let initialized = false;
 
-    if (window.innerWidth <= 768) {
-        visibleCount = 1;
-        menuDisp();
+function init() {
+    if (initialized) return;
+    initialized = true;
+
+    let currentIndex = 0;
+    const isMobile = window.innerWidth <= 768;
+    const visibleCount = isMobile ? 1 : 3;
+
+    menuDisp();
+
+    if (isMobile) {
         document.querySelectorAll('.carousel-hover-label').forEach(el => {
-            el.style.display = "none";
+            el.style.display = 'none';
         });
-    } else {
-        visibleCount = 3;
     }
 
     const thumbnails = document.querySelectorAll('.advertisement-thumbnail');
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
+
     if (thumbnails.length <= visibleCount) {
         nextBtn.classList.add('is-hidden');
     }
 
-    supporterLink.addEventListener('click', function() {
-        supporterRegister();
-    });
+    document.getElementById('supporter').addEventListener('click', () => supporterRegister());
 
-    prevBtn.addEventListener('click', function() {
+    prevBtn.addEventListener('click', () => {
         currentIndex = advertisementSlide(-1, visibleCount, currentIndex);
     });
-    nextBtn.addEventListener('click', function() {
+    nextBtn.addEventListener('click', () => {
         currentIndex = advertisementSlide(1, visibleCount, currentIndex);
     });
 
-    document.getElementById('searchAddressBtn').addEventListener('click', function() {
-        searchAddress();
-    });
+    document.getElementById('searchAddressBtn').addEventListener('click', () => searchAddress());
 
     scrollEffects();
     heroAnim();
 }
 
-document.addEventListener('DOMContentLoaded', init);
 document.addEventListener('turbo:load', init);

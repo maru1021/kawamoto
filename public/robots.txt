@@ -1,1 +1,8 @@
-# See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+Disallow: /kw
+Disallow: /login
+Disallow: /supporter
+
+Sitemap: https://www.kawamotokatsuragi.com/sitemap.xml

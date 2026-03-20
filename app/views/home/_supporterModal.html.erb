@@ -8,7 +8,7 @@
       <div class="modal-body">
         <h3>私は川本 まさきを応援します</h3>
         <form id="supporterForm">
-          <input type="hidden" name="authenticity_token" value="" id="csrfTokenField">
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token, id: "csrfTokenField" %>
           <div class="form-group">
             <label for="supporterlName">氏名</label>
             <input type="text" class="form-control" id="supporterName" name="name">

@@ -1,5 +1,5 @@
 <div class="section-inner">
-  <div class="section-heading fade-in" id="arliament">
+  <div class="section-heading fade-in" id="parliament">
     <span class="section-heading-en">REPORT</span>
     <h2 class="section-heading-ja">議会報告</h2>
     <div class="section-heading-line"></div>
@@ -14,11 +14,20 @@
 
     <div class="carousel-track-wrapper">
       <div class="advertisement">
-        <% @pdf_thumbnails.each do |thumbnail_path| %>
+        <% @pdf_thumbnails.each_with_index do |thumbnail_path, i|
+          filename = File.basename(thumbnail_path, '_page_1.png')
+          match = filename.match(/^(\d{4})-(\d+)No(\d+)/)
+          alt_text = match ? "議会報告 #{match[1]}年#{match[2]}月号 No.#{match[3]}" : "議会報告PDF"
+          src = "/advertisement/thumbnails/#{File.basename(thumbnail_path)}"
+        %>
           <div class="advertisement-thumbnail">
-            <%= link_to image_tag("/advertisement/thumbnails/#{File.basename(thumbnail_path)}", alt: 'PDF Thumbnail'),
-                "/advertisement/#{File.basename(thumbnail_path, '_page_1.png')}.pdf", target: '_blank'
-            %>
+            <% if i < 3 %>
+              <%= link_to image_tag(src, alt: alt_text),
+                  "/advertisement/#{filename}.pdf", target: '_blank', rel: 'noopener noreferrer' %>
+            <% else %>
+              <%= link_to tag.img(alt: alt_text, data: { src: src }, class: 'lazy-img'),
+                  "/advertisement/#{filename}.pdf", target: '_blank', rel: 'noopener noreferrer' %>
+            <% end %>
             <div class="carousel-hover-label">PDF を開く</div>
           </div>
         <% end %>

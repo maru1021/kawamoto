@@ -1,7 +1,15 @@
 class ApplicationController < ActionController::Base
   helper_method :current_user
+  before_action :set_security_headers
 
   private
+
+  def set_security_headers
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    response.headers['X-Frame-Options'] = 'SAMEORIGIN'
+    response.headers['Referrer-Policy'] = 'strict-origin-when-cross-origin'
+    response.headers['Permissions-Policy'] = 'camera=(), microphone=(), geolocation=()'
+  end
 
   def current_user
     @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]

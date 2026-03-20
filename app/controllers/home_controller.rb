@@ -6,28 +6,29 @@ class HomeController < ApplicationController
       month = name[/^\d{4}-(\d+)/, 1].to_i
       year * 100 + month
     }.reverse
-    @notis = Noti.all.order('id desc')
+    @notis = Noti.order(id: :desc).limit(10).with_attached_image
   end
 
   def post
-    phone = params[:phone]
+    sp = supporter_params
+    phone = sp[:phone].to_s
     if phone.length == 10
-      phone = params[:phone].gsub(/(\d{4})(\d{2})(\d{4})/, '\1-\2-\3')
+      phone = phone.gsub(/(\d{4})(\d{2})(\d{4})/, '\1-\2-\3')
     elsif phone.length == 11
       phone = phone.gsub(/(\d{3})(\d{4})(\d{4})/, '\1-\2-\3')
     end
 
-    post = params[:post]
+    post = sp[:post].to_s
     if post.length == 7
       post = post.gsub(/(\d{3})(\d{4})/, '\1-\2')
     end
 
     supporter = Supporter.new(
-      name: params[:name],
+      name: sp[:name],
       post: post,
-      address: params[:address],
+      address: sp[:address],
       phone: phone,
-      birth: params[:birth]
+      birth: sp[:birth]
     )
 
     if supporter.save
@@ -35,5 +36,11 @@ class HomeController < ApplicationController
     else
       render json: {message: false}
     end
+  end
+
+  private
+
+  def supporter_params
+    params.permit(:name, :post, :address, :phone, :birth)
   end
 end

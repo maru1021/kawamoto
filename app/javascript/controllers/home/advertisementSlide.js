@@ -1,32 +1,27 @@
+function loadLazyImages(thumbnails, currentIndex, visibleCount) {
+    for (let i = currentIndex; i < currentIndex + visibleCount + 1 && i < thumbnails.length; i++) {
+        const img = thumbnails[i].querySelector('.lazy-img');
+        if (img && !img.src) {
+            img.src = img.dataset.src;
+            img.classList.remove('lazy-img');
+        }
+    }
+}
+
 export function advertisementSlide(direction, visibleCount, currentIndex) {
     const prevButton = document.getElementById('prev');
     const nextButton = document.getElementById('next');
-    const advertisementElement = document.querySelector('.advertisement');
+    const track = document.querySelector('.advertisement');
     const thumbnails = document.querySelectorAll('.advertisement-thumbnail');
-    const thumbnailWidth = thumbnails[0].offsetWidth;
     const maxIndex = thumbnails.length - visibleCount;
 
-    currentIndex += direction;
+    currentIndex = Math.max(0, Math.min(currentIndex + direction, maxIndex));
 
-    if (currentIndex < 0) {
-        currentIndex = 0;
-    } else if (currentIndex > maxIndex) {
-        currentIndex = maxIndex;
-    }
+    prevButton.classList.toggle('is-hidden', currentIndex <= 0);
+    nextButton.classList.toggle('is-hidden', currentIndex >= maxIndex);
 
-    // Toggle button visibility via class
-    if (currentIndex <= 0) {
-        prevButton.classList.add('is-hidden');
-    } else {
-        prevButton.classList.remove('is-hidden');
-    }
+    loadLazyImages(thumbnails, currentIndex, visibleCount);
 
-    if (currentIndex >= maxIndex) {
-        nextButton.classList.add('is-hidden');
-    } else {
-        nextButton.classList.remove('is-hidden');
-    }
-
-    advertisementElement.style.transform = `translateX(${-currentIndex * thumbnailWidth}px)`;
+    track.style.transform = `translateX(${-currentIndex * thumbnails[0].offsetWidth}px)`;
     return currentIndex;
 }

@@ -1,7 +1,7 @@
 <header class="header" id="header">
   <div class="header-inner">
-    <a href="#" class="header-brand">
-      <%= image_tag 'face.png', class: 'header-avatar' %>
+    <a href="/" class="header-brand">
+      <%= image_tag 'face.png', class: 'header-avatar', alt: '川本まさき' %>
       <div class="header-brand-text">
         <span class="header-title-sub">御所市議会議員</span>
         <span class="header-title-name">川本 まさき</span>
@@ -13,7 +13,8 @@
       <a href="#profile">プロフィール</a>
       <a href="#voice">市民の声</a>
       <a href="#achievements">実績</a>
-      <a href="#arliament">議会報告</a>
+      <a href="#parliament">議会報告</a>
+      <a href="#noti">お知らせ</a>
       <div id="supporter" class="menu-supporter-btn">後援会入会</div>
       <a id="line-link" href="https://liff.line.me/1645278921-kWRPP32q/?accountId=780wuzcs" target="_blank" rel="noopener noreferrer" class="menu-line-btn">
         <%= image_tag 'linelogo.png', class: "line-link-logo" %>
@@ -21,11 +22,11 @@
       </a>
     </nav>
 
-    <div id="menuToggle">
+    <button id="menuToggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="menu">
       <span></span>
       <span></span>
       <span></span>
-    </div>
+    </button>
   </div>
   <div class="scroll-progress" id="scrollProgress"></div>
 </header>

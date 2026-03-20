@@ -1,7 +1,7 @@
 <%= render 'header' %>
 
 <section class="hero">
-  <%= image_tag 'IMG_1369.JPG', class: 'hero-img', id: 'heroImg' %>
+  <%= image_tag 'IMG_1369.JPG', class: 'hero-img', id: 'heroImg', alt: '御所市議会議員 川本まさき' %>
   <div class="hero-overlay">
     <div class="hero-particles">
       <div class="hero-particle"></div>
@@ -24,6 +24,7 @@
   </div>
 </section>
 
+<main id="main-content">
 <section class="section-policy" id="policy-section">
   <div class="section-deco-top"></div>
   <%= render 'policy' %>
@@ -61,7 +62,43 @@
   <%= render 'advertisement' %>
 </section>
 
+<div class="section-curve section-curve--cool">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,0 C480,60 960,60 1440,0 L1440,60 L0,60 Z"></path></svg>
+</div>
+
+<% if @notis.present? %>
+<section class="section-noti" id="noti-section">
+  <div class="section-inner">
+    <div class="section-heading fade-in" id="noti">
+      <span class="section-heading-en">NEWS</span>
+      <h2 class="section-heading-ja">お知らせ</h2>
+      <div class="section-heading-line"></div>
+    </div>
+
+    <div class="noti-list fade-in">
+      <% @notis.each do |noti| %>
+        <article class="noti-card">
+          <time class="noti-card-date" datetime="<%= noti.created_at.in_time_zone('Tokyo').strftime('%Y-%m-%d') %>"><%= noti.created_at.in_time_zone('Tokyo').strftime('%Y.%m.%d') %></time>
+          <h3 class="noti-card-title"><%= noti.title %></h3>
+          <div class="noti-card-body">
+            <% if noti.image.attached? %>
+              <div class="noti-card-image">
+                <a href="<%= url_for(noti.image) %>" target="_blank" rel="noopener noreferrer">
+                  <%= image_tag noti.image, alt: noti.title, loading: 'lazy' %>
+                </a>
+              </div>
+            <% end %>
+            <div class="noti-card-text"><%= simple_format(noti.article) %></div>
+          </div>
+        </article>
+      <% end %>
+    </div>
+  </div>
+</section>
+<% end %>
+
 <%= render 'supporterModal' %>
+</main>
 
 <button class="back-to-top" id="backToTop" aria-label="トップへ戻る">
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">

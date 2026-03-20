@@ -1,5 +1,9 @@
+let initialized = false;
+
 export function scrollEffects() {
-  const fadeEls = Array.from(document.querySelectorAll('.fade-in:not(.fade-in-visible)'));
+  if (initialized) return;
+  initialized = true;
+
   const scrollProgress = document.getElementById('scrollProgress');
   const header = document.getElementById('header');
   const heroImg = document.getElementById('heroImg');
@@ -7,11 +11,11 @@ export function scrollEffects() {
   const backToTopBtn = document.getElementById('backToTop');
   const navLinks = document.querySelectorAll('.menu a[href^="#"]');
 
-  const sections = [];
-  navLinks.forEach(link => {
+  const fadeEls = Array.from(document.querySelectorAll('.fade-in:not(.fade-in-visible)'));
+  const sections = Array.from(navLinks, link => {
     const el = document.getElementById(link.getAttribute('href').substring(1));
-    if (el) sections.push({ el, link });
-  });
+    return el ? { el, link } : null;
+  }).filter(Boolean);
 
   function revealVisible() {
     for (let i = fadeEls.length - 1; i >= 0; i--) {
@@ -25,18 +29,18 @@ export function scrollEffects() {
   revealVisible();
 
   let ticking = false;
-  window.addEventListener('scroll', function() {
+  window.addEventListener('scroll', () => {
     if (ticking) return;
     ticking = true;
-    requestAnimationFrame(function() {
+    requestAnimationFrame(() => {
       const y = window.scrollY;
       const docH = document.documentElement.scrollHeight - window.innerHeight;
 
       header.classList.toggle('header--scrolled', y > 60);
-      scrollProgress.style.width = (docH > 0 ? (y / docH) * 100 : 0) + '%';
+      scrollProgress.style.width = `${docH > 0 ? (y / docH) * 100 : 0}%`;
 
       if (hero && heroImg && y < hero.offsetTop + hero.offsetHeight) {
-        heroImg.style.transform = 'translateY(' + (y * 0.25) + 'px) scale(1.05)';
+        heroImg.style.transform = `translateY(${y * 0.25}px) scale(1.05)`;
       }
 
       let current = '';
@@ -58,7 +62,7 @@ export function scrollEffects() {
     });
   }, { passive: true });
 
-  backToTopBtn.addEventListener('click', function() {
+  backToTopBtn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
