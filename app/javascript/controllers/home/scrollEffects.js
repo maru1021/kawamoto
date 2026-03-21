@@ -28,6 +28,40 @@ export function scrollEffects() {
 
   revealVisible();
 
+  // Ken Burns: ページ読み込み後ゆっくり一方向にパン＆ズームして停止
+  const KB_DURATION = 8000;
+  let kbStart = null;
+  let kbProgress = 0; // 0→1 の進行値（スクロールハンドラと共有）
+
+  function easeOut(t) { return 1 - (1 - t) * (1 - t); }
+
+  function updateHeroTransform() {
+    if (!hero || !heroImg) return;
+    const y = window.scrollY;
+    if (y >= hero.offsetTop + hero.offsetHeight) return;
+
+    const heroH = hero.offsetHeight;
+    const scrollRatio = Math.min(y / heroH, 1);
+
+    const scale = 1.05 + scrollRatio * 0.15 + kbProgress * 0.03;
+    const moveX = scrollRatio * -20 + kbProgress * -10;
+    const moveY = y * 0.25 + kbProgress * -5;
+
+    heroImg.style.transform = `translate(${moveX}px, ${moveY}px) scale(${scale})`;
+  }
+
+  function kbLoop(timestamp) {
+    if (!kbStart) kbStart = timestamp;
+    const raw = Math.min((timestamp - kbStart) / KB_DURATION, 1);
+    kbProgress = easeOut(raw);
+    updateHeroTransform();
+    if (raw < 1) requestAnimationFrame(kbLoop);
+  }
+
+  if (hero && heroImg) {
+    requestAnimationFrame(kbLoop);
+  }
+
   let ticking = false;
   window.addEventListener('scroll', () => {
     if (ticking) return;
@@ -39,9 +73,7 @@ export function scrollEffects() {
       header.classList.toggle('header--scrolled', y > 60);
       scrollProgress.style.width = `${docH > 0 ? (y / docH) * 100 : 0}%`;
 
-      if (hero && heroImg && y < hero.offsetTop + hero.offsetHeight) {
-        heroImg.style.transform = `translateY(${y * 0.25}px) scale(1.05)`;
-      }
+      updateHeroTransform();
 
       let current = '';
       for (let i = sections.length - 1; i >= 0; i--) {
